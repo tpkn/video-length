@@ -1,3 +1,7 @@
+/*!
+ * Video Length, http://tpkn.me/
+ */
+
 let util = require('util');
 let exec = util.promisify(require('child_process').exec);
 
