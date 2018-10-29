@@ -39,7 +39,7 @@ Enable/disable errors output
 ## Usage
 ```javascript
 const fs = require('fs');
-const VideoLength = require('./public/video-length');
+const VideoLength = require('video-length');
 
 let video = './videos/MONICA BELLUCCI in the Matrix Sequels (HD Movie Scenes).mp4';
 
