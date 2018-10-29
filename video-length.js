@@ -11,7 +11,10 @@ async function videoLength(file, options = {}){
 
    try {
       const data = await exec(`${bin} -i "${file}" -show_entries format=duration -v quiet -of csv="p=0"`);
-      len = parseFloat(data.stdout);
+      if(typeof data.stdout !== 'undefined'){
+         data = data.stdout;
+      }
+      len = parseFloat(data);
    }catch(err){
       if(typeof options.debug !== 'undefined' && options.debug){
          console.log(err);
@@ -22,4 +25,3 @@ async function videoLength(file, options = {}){
 }
 
 module.exports = videoLength;
-
