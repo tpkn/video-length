@@ -44,9 +44,9 @@ const VideoLength = require('./public/video-length');
 let video = './videos/MONICA BELLUCCI in the Matrix Sequels (HD Movie Scenes).mp4';
 
 VideoLength(video, { bin: './bin/ffprobe.exe' }).then(len => {
-	// => 307.967
+   // => 307.967
 }).catch(err => {
-	console.log(err);
+   console.log(err);
 })
 
 ```
