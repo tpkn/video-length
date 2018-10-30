@@ -14,7 +14,7 @@ async function videoLength(file, options = {}){
    }
 
    try {
-      const data = await exec(`${bin} -i "${file}" -show_entries format=duration -v quiet -of csv="p=0"`);
+      let data = await exec(`${bin} -i "${file}" -show_entries format=duration -v quiet -of csv="p=0"`);
       if(typeof data.stdout !== 'undefined'){
          data = data.stdout;
       }
