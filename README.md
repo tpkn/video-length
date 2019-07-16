@@ -1,4 +1,4 @@
-# Video Length   
+# Video Length [![npm Package](https://img.shields.io/npm/v/video-length.svg)](https://www.npmjs.org/package/video-length)
 Get video length using NodeJS and FFProbe
 
 
