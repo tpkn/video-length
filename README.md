@@ -29,10 +29,10 @@ npm install video-length
 Path to [ffprobe](http://ffmpeg.org/download.html) binary file  
 
 
-### options.debug
+### options.silent
 **Type**: _Boolean_  
-**Default**: `false`  
-Enable/disable errors output  
+**Default**: `true`  
+Suppress output of any errors. If something went wrong, you'll get `0` as the video length.
 
 
 ### @return

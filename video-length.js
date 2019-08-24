@@ -6,7 +6,7 @@ const exec = util.promisify(require('child_process').exec);
 
 async function VideoLength(file, options = {}){
    let len = 0;
-   let { bin = 'ffprobe', debug = false } = options;
+   let { bin = 'ffprobe', silent = true } = options;
 
    try {
 
@@ -18,7 +18,9 @@ async function VideoLength(file, options = {}){
       len = parseFloat(data);
 
    }catch(err){
-      console.log(err);
+   	if(!silent){
+   		throw err
+   	}
    }
 
    return len;
