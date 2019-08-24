@@ -46,7 +46,6 @@ Video length in seconds
 
 ## Usage
 ```javascript
-const fs = require('fs');
 const VideoLength = require('video-length');
 
 let video = './videos/MONICA BELLUCCI in the Matrix Sequels (HD Movie Scenes).mp4';
