@@ -1,11 +1,10 @@
 /*!
  * Video Length, http://tpkn.me/
  */
-
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
-async function videoLength(file, options = {}){
+async function VideoLength(file, options = {}){
    let len = 0;
    let { bin = 'ffprobe', debug = false } = options;
 
@@ -15,15 +14,14 @@ async function videoLength(file, options = {}){
       if(typeof data.stdout !== 'undefined'){
          data = data.stdout;
       }
+
       len = parseFloat(data);
 
    }catch(err){
-      if(debug){
-         console.log(err);
-      }
+      console.log(err);
    }
 
    return len;
 }
 
-module.exports = videoLength;
+module.exports = VideoLength;
