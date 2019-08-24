@@ -35,7 +35,7 @@ Path to [ffprobe](http://ffmpeg.org/download.html) binary file
 Enable/disable errors output  
 
 
-### return
+### @return
 **Type**: _Number_  
 **Default**: `0`  
 Video length in seconds
