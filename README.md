@@ -17,7 +17,7 @@ npm install video-length
 
 ## API
 
-```jsvascript
+```javascript
 await VideoLength(file[, options])
 ```
 
