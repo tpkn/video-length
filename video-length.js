@@ -5,25 +5,49 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
 async function VideoLength(file, options = {}){
-   let len = 0;
-   let { bin = 'ffprobe', silent = true } = options;
+   let result;
+   let { bin = 'MediaInfo', extended = false } = options;
 
-   try {
+   let { stdout } = await exec(`"${bin}" --full --output=JSON "${file}"`);
+   if(stdout){
 
-      let data = await exec(`${bin} -i "${file}" -show_entries format=duration -v quiet -of csv="p=0"`);
-      if(typeof data.stdout !== 'undefined'){
-         data = data.stdout;
+      let specs = JSON.parse(stdout);
+      let { track } = specs.media;
+      if(!track){
+         throw new TypeError('Can\'t extract video specs');
       }
 
-      len = parseFloat(data);
+      // General info
+      let general_specs = track.find(i => i['@type'] == 'General');
+      if(!general_specs){
+         throw new TypeError('Can\'t find overall specs');
+      }
 
-   }catch(err){
-   	if(!silent){
-   		throw err
-   	}
+      // Video track specs
+      let video_specs = track.find(i => i['@type'] == 'Video');
+      if(!video_specs){
+         throw new TypeError('Can\'t find video track');
+      }
+
+      let { Duration, FrameRate, OverallBitRate, FileSize } = general_specs;
+      let { Width, Height } = video_specs;
+
+      if(extended){
+         result = {
+            duration : parseFloat(Duration),
+            width    : parseFloat(Width),
+            height   : parseFloat(Height),
+            fps      : parseFloat(FrameRate),
+            bitrate  : parseFloat(OverallBitRate),
+            size     : parseFloat(FileSize),
+         }
+      }else{
+         result = parseFloat(Duration);
+      }
+      
    }
 
-   return len;
+   return result
 }
 
 module.exports = VideoLength;

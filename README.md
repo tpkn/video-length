@@ -1,46 +1,50 @@
 # Video Length [![npm Package](https://img.shields.io/npm/v/video-length.svg)](https://www.npmjs.org/package/video-length)
-Get video length using NodeJS and FFProbe
+Get video length using NodeJS and MediaInfo
 
 
 Features:
 * Returns full video length in seconds
 * Works even if there are unsupported chars in the file name
-* Silent. Returns `0` in case of any error
 
-
-
-## Installation
-```bash
-npm install video-length
-```
 
 
 ## API
 
 ```javascript
-await VideoLength(file[, options])
+await VideoLength(input[, options])
 ```
 
-### file
-**Type**: _String_
+### input
+**Type**: _String_   
+Full path to video
 
 
 ### options.bin
 **Type**: _String_  
-**Default**: `ffprobe`  
-Path to [ffprobe](http://ffmpeg.org/download.html) binary file  
+**Default**: `MediaInfo`  
+Full path to [MediaInfo](https://mediaarea.net/ru/MediaInfo) binary file  
 
 
-### options.silent
+### options.extended
 **Type**: _Boolean_  
-**Default**: `true`  
-Suppress output of any errors. If something went wrong, you'll get `0` as the video length.
+**Default**: `false`  
+Return a bit more video specs   
 
 
 ### @return
-**Type**: _Number_  
-**Default**: `0`  
-Video length in seconds
+**Type**: _Number_ | _Object_  
+Depends on the `extended` option. If `extended = true`, returns an object with few more data:  
+```json
+{
+   'duration' : 946.213,
+   'width'    : 2560,
+   'height'   : 1440,
+   'fps'      : 30,
+   'bitrate'  : 980537,
+   'size'     : 6401288
+}
+```
+
 
 
 
@@ -50,11 +54,18 @@ const VideoLength = require('video-length');
 
 let video = './videos/MONICA BELLUCCI in the Matrix Sequels (HD Movie Scenes).mp4';
 
-VideoLength(video, { bin: './bin/ffprobe.exe' }).then(len => {
+VideoLength(video, { bin: './bin/MediaInfo.exe' })
+.then(len => {
    // => 307.967
-}).catch(err => {
+})
+.catch(err => {
    console.log(err);
 })
-
 ```
 
+
+
+## Changelog 
+#### v2.0.0 (2019-08-27):
+- moved from `FFprobe` to `MediaInfo`
+- no more useless `silent` mode
