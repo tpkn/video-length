@@ -25,7 +25,7 @@ Full path to [MediaInfo](https://mediaarea.net/ru/MediaInfo) binary file
 Return a bit more video specs   
 
 
-### @return
+### @output
 **Type**: _Number_ | _Object_  
 Depends on the `extended` option. If `extended = true`, returns an object with few more data:  
 ```json
