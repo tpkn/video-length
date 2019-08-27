@@ -2,12 +2,6 @@
 Get video length using NodeJS and MediaInfo
 
 
-Features:
-* Returns full video length in seconds
-* Works even if there are unsupported chars in the file name
-
-
-
 ## API
 
 ```javascript
