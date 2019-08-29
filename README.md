@@ -16,7 +16,7 @@ Full path to video
 ### options.bin
 **Type**: _String_  
 **Default**: `MediaInfo`  
-Full path to [MediaInfo](https://mediaarea.net/ru/MediaInfo) binary file  
+Full path to [MediaInfo](https://mediaarea.net/en/MediaInfo) binary file  
 
 
 ### options.extended
