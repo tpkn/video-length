@@ -30,16 +30,14 @@ Return a bit more video specs
 Depends on the `extended` option. If `extended = true`, returns an object with few more data:  
 ```json
 {
-   "duration" : 946.213,
-   "width"    : 2560,
-   "height"   : 1440,
-   "fps"      : 30,
-   "bitrate"  : 980537,
-   "size"     : 6401288
+   "duration" : 307.967,
+   "width"    : 1280,
+   "height"   : 720,
+   "fps"      : 29.97,
+   "bitrate"  : 529097,
+   "size"     : 20368040
 }
 ```
-
-
 
 
 ## Usage
