@@ -2,13 +2,13 @@
  * Video Length, http://tpkn.me/
  */
 const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+const execFile = util.promisify(require('child_process').execFile);
 
 async function VideoLength(file, options = {}){
    let result;
    let { bin = 'MediaInfo', extended = false } = options;
 
-   let { stdout } = await exec(`"${bin}" --full --output=JSON "${file}"`);
+   let { stdout } = await execFile(bin, ['--full', '--output=JSON', file]);
    if(stdout){
 
       let specs = JSON.parse(stdout);
