@@ -58,7 +58,7 @@ VideoLength(video, { bin: './bin/MediaInfo.exe' })
 
 
 ## Changelog 
-#### v2.0.2:
+#### v2.0.6:
 - security fix
 
 
