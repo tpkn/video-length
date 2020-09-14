@@ -2,13 +2,13 @@
  * Video Length, http://tpkn.me/
  */
 const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+const execFile = util.promisify(require('child_process').execFile);
 
 async function VideoLength(file, options = {}){
    let result;
-   let { bin = 'MediaInfo', extended = false } = options;
+   let { bin = 'MediaInfo', extended = false, giveall = false } = options;
 
-   let { stdout } = await exec(`"${bin}" --full --output=JSON "${file}"`);
+   let { stdout } = await execFile(bin, [ '--full', '--output=JSON', `${file}` ]);
    if(stdout){
 
       let specs = JSON.parse(stdout);
@@ -20,13 +20,13 @@ async function VideoLength(file, options = {}){
       // General info
       let general_specs = track.find(i => i['@type'] == 'General');
       if(!general_specs){
-         throw new TypeError('Can\'t find overall specs');
+         throw new TypeError('Can\'t find "General" specs');
       }
 
       // Video track specs
       let video_specs = track.find(i => i['@type'] == 'Video');
       if(!video_specs){
-         throw new TypeError('Can\'t find video track');
+         throw new TypeError('Can\'t find "Video" track');
       }
 
       let { Duration, FrameRate, OverallBitRate, FileSize } = general_specs;
@@ -41,6 +41,8 @@ async function VideoLength(file, options = {}){
             bitrate  : parseFloat(OverallBitRate),
             size     : parseFloat(FileSize),
          }
+      }else if(giveall){
+         result = specs;
       }else{
          result = parseFloat(Duration);
       }
