@@ -8,7 +8,7 @@ async function VideoLength(file, options = {}){
    let result;
    let { bin = 'MediaInfo', extended = false, giveall = false } = options;
 
-   let { stdout } = await execFile(bin, [ '--full', '--output=JSON', `${file}` ]);
+   let { stdout } = await execFile(bin, [ '--full', '--output=JSON', file ]);
    if(stdout){
 
       let specs = JSON.parse(stdout);

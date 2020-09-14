@@ -58,6 +58,10 @@ VideoLength(video, { bin: './bin/MediaInfo.exe' })
 
 
 ## Changelog 
+#### v2.0.2:
+- security fix
+
+
 #### v2.0.0 (2019-08-27):
 - moved from `FFprobe` to `MediaInfo`
 - no more useless `silent` mode
